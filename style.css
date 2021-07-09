@@ -178,7 +178,6 @@ p {
 .home__contact:hover {
   background-color: var(--color-orange);
 }
-
 /* Section common */
 .section {
   padding: 50px;
@@ -518,6 +517,9 @@ p {
 
   .navbar__toggle-btn {
     display: block;
+    top: 16px;
+    right: 16px;
+    font-size: var(--font-medium);
   }
 
   #navbar {
@@ -561,6 +563,7 @@ p {
 
   .category__btn {
     margin: 4px 0;
+    width: 100%;
   }
 
   .project {
@@ -575,10 +578,10 @@ p {
   .testimonial__avatar {
     width: 120px;
     height: 120px;
-    margin-bottom: 20px;
   }
 
-  .testimonial__avatar:nth-child(odd), .testimonial__avatar:nth-child(even) {
+  .testimonial__avatar:nth-child(even),
+  .testimonial__avatar:nth-child(odd) {
     margin: 0;
     margin-bottom: 8px;
   }
