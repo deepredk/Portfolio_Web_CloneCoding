@@ -14,16 +14,16 @@ document.addEventListener('scroll', () => {
 
 // Handle scrolling when tapping on the navbar menu
 const navbarMenu = document.querySelector('.navbar__menu');
-navbarMenu.addEventListener('click', (event) => {
-  console.log(event.target.dataset.link);
-  const target = event.target;
+navbarMenu.addEventListener('click', (e) => {
+  console.log(e.target.dataset.link);
+  const target = e.target;
   const link = target.dataset.link;
   if (link == null) {
     return;
   }
 
   scrollIntoView(link);
-})
+});
 
 // Handle click on "contact me" button on home
 const contactBtn = document.querySelector('.home__contact');
@@ -35,11 +35,11 @@ contactBtn.addEventListener('click', () => {
 const home = document.querySelector('.home__container');
 const homeHeight = home.getBoundingClientRect().height;
 document.addEventListener('scroll', () => {
-  home.style.opacity = 1 - (window.scrollY / homeHeight);
+  home.style.opacity = 1 - window.scrollY / homeHeight;
 });
 
 // Show "arrow up" button when scrolling down
-const arrowUp = document.querySelector('.arrow-up')
+const arrowUp = document.querySelector('.arrow-up');
 document.addEventListener('scroll', () => {
   if (window.scrollY > homeHeight / 2) {
     arrowUp.classList.add('visible');
@@ -51,7 +51,28 @@ document.addEventListener('scroll', () => {
 // Handle click on the "arrow up" button
 arrowUp.addEventListener('click', () => {
   scrollIntoView('#home');
-})
+});
+
+// Projects
+const workBtnContainer = document.querySelector('.work__categories');
+const projectContainer = document.querySelector('.work-projects');
+const projects = document.querySelectorAll('.project');
+
+workBtnContainer.addEventListener('click', (e) => {
+  const filter = e.target.dataset.filter || e.target.parentNode.dataset.filter;
+
+  if (filter == null) {
+    return;
+  }
+
+  projects.forEach((project) => {
+    if (filter === '*' || filter === project.dataset.type) {
+      project.classList.remove('invisible');
+    } else {
+      project.classList.add('invisible');
+    }
+  });
+});
 
 function scrollIntoView(selector) {
   const scrollTo = document.querySelector(selector);
