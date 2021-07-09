@@ -59,11 +59,19 @@ const projectContainer = document.querySelector('.work__projects');
 const projects = document.querySelectorAll('.project');
 
 workBtnContainer.addEventListener('click', (e) => {
-  const filter = e.target.dataset.filter || e.target.parentNode.dataset.filter;
+  const target =
+    e.target.nodeName === 'BUTTON' ? e.target : e.target.parentNode;
+
+  const filter = target.dataset.filter;
 
   if (filter == null) {
     return;
   }
+
+  // Remove selection from the previous titem and selec the new one
+  const active = document.querySelector('.category__btn.selected');
+  active.classList.remove('selected');
+  target.classList.add('selected');
 
   projectContainer.classList.add('anim-out');
   setTimeout(() => {
